@@ -3,8 +3,8 @@ GO
 
 -- Drop view(s)
 USE [EmployeePhoneBook]
-IF  EXISTS (SELECT * FROM sys.views WHERE object_id = OBJECT_ID(N'[dbo].[vw_EmployeePhoneList]'))
-DROP VIEW [dbo].[vw_EmployeePhoneList]
+IF  EXISTS (SELECT * FROM sys.views WHERE object_id = OBJECT_ID(N'[dbo].[vw_EmployeeContactList]'))
+DROP VIEW [dbo].[vw_EmployeeContactList]
 -- Drop tables
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tbPhoneNumbers]') AND type in (N'U'))
 DROP TABLE [dbo].[tbPhoneNumbers]
@@ -80,7 +80,7 @@ GO
 
 -- If you didn't believe me when I said I purposefully wanted to use as many SQL features
 -- as reasonably possible, look at this view.
-CREATE VIEW vw_EmployeePhoneList AS
+CREATE VIEW vw_EmployeeContactList AS
 	SELECT 
 			tbEmployees.EmployeeId,
 			LastName, FirstName, Suffix, 
