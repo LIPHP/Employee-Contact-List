@@ -18,3 +18,17 @@ EXEC usp_AddNewEmployee
 	@Zip = '11733',
 	@OfficeNumber = '6316897200'
 GO
+
+
+DECLARE @EmployeeId uniqueidentifier
+SELECT @EmployeeId=EmployeeId FROM tbEmployees WHERE LastName = 'Dearing' AND FirstName = 'Justin'
+EXEC usp_UpdateEmployeeNumber
+	@EmployeeId = @EmployeeId,
+	@PhoneNumberType = 'Mobile',
+	@Number = '3215551212'
+
+SELECT @EmployeeId=EmployeeId FROM tbEmployees WHERE LastName = 'Downs' AND FirstName = 'Kenneth'
+EXEC usp_UpdateEmployeeNumber
+	@EmployeeId = @EmployeeId,
+	@PhoneNumberType = 'Mobile',
+	@Number = '3215551212'
