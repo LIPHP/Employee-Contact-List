@@ -45,3 +45,6 @@ BEGIN
 	RETURN 0
 END
 GO
+
+GRANT EXECUTE ON usp_UpdateEmployeeNumber TO PhoneBookAppUser
+GO

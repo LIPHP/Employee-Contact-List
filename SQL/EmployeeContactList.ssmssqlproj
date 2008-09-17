@@ -9,7 +9,7 @@
           <Server>(local)</Server>
           <UserName />
           <Authentication>Windows Authentication</Authentication>
-          <InitialDB />
+          <InitialDB>EmployeePhoneBook</InitialDB>
           <LoginTimeout>15</LoginTimeout>
           <ExecutionTimeout>0</ExecutionTimeout>
           <ConnectionProtocol>NotSpecified</ConnectionProtocol>
@@ -30,6 +30,12 @@
           <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>Schema Script.sql</FullPath>
+        </FileNode>
+        <FileNode Name="fn_GetAllEmployees.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>fn_GetAllEmployees.sql</FullPath>
         </FileNode>
         <FileNode Name="usp_UpdateEmployeeNumber.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>

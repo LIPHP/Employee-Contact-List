@@ -69,3 +69,6 @@ BEGIN
 	RETURN 0
 END
 GO
+
+GRANT EXECUTE ON usp_AddNewEmployee TO PhoneBookAppUser
+GO
