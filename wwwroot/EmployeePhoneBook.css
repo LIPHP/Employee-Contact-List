@@ -1,0 +1,10 @@
+#PhoneListTable {
+	background-color: #6699CC;
+	border: solid #000000 3px;
+}
+#PhoneListTable td {
+	background-color: #C3D9FF;
+}
+#ValidatorParagraph {
+	text-align: center;
+}

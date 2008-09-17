@@ -34,7 +34,13 @@ class Dba {
 	}
 
 	public function GetPhoneList() {
-		return $this->getQuery('SELECT * FROM fn_GetAllEmployees()');
+		$stmt = $this->getQuery('SELECT * FROM fn_GetAllEmployees()');
+		/* Retrieve each row as an associative array and display the results.*/
+		while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))
+		{
+			$ret[] = $row;
+		}
+		return $ret;
 	}
 }
 

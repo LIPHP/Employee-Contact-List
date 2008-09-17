@@ -84,7 +84,7 @@ CREATE VIEW vw_EmployeeContactList AS
 	SELECT 
 			tbEmployees.EmployeeId,
 			LastName, FirstName, Suffix, 
-			Address1, Address2, City, State, Zip,
+			Address1, Address2, City, State, RTRIM(CAST(Zip AS varchar(10))) AS Zip,
 			MobileNumbers.PhoneNumber AS MobileNumber,
 			OfficeNumbers.PhoneNumber AS OfficeNumber,
 			HomeNumbers.PhoneNumber AS HomeNumber

@@ -8,3 +8,5 @@ GO
 
 GRANT SELECT ON fn_GetAllEmployees TO PhoneBookAppUser
 
+SELECT * FROM fn_GetAllEmployees()
+
