@@ -38,6 +38,9 @@ class Dba {
 		/* Retrieve each row as an associative array and display the results.*/
 		while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))
 		{
+			$row['HomeNumber'] = preg_replace('/([0-9]{3})([0-9]{3})([0-9]{4})/', '\1-\2-\3', $row['HomeNumber']);
+			$row['MobileNumber'] = preg_replace('/([0-9]{3})([0-9]{3})([0-9]{4})/', '\1-\2-\3', $row['MobileNumber']);
+			$row['OfficeNumber'] = preg_replace('/([0-9]{3})([0-9]{3})([0-9]{4})/', '\1-\2-\3', $row['OfficeNumber']);
 			$ret[] = $row;
 		}
 		return $ret;
