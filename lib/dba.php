@@ -24,8 +24,21 @@ class Dba {
 		}
 	}
 
-	private function getQuery ($tsql) {
-		$ret = sqlsrv_query( $this->conn, $tsql);
+
+	/**
+	 * Takes a 10 character string of numeric characters and formats it as a phone number.
+	 */
+	private function formatPhoneNumbers(Array &$EmployeeRecord)
+	{
+		$EmployeeRecord['HomeNumber'] = preg_replace('/([0-9]{3})([0-9]{3})([0-9]{4})/', '\1-\2-\3', $EmployeeRecord['HomeNumber']);
+		$EmployeeRecord['MobileNumber'] = preg_replace('/([0-9]{3})([0-9]{3})([0-9]{4})/', '\1-\2-\3', $EmployeeRecord['MobileNumber']);
+		$EmployeeRecord['OfficeNumber'] = preg_replace('/([0-9]{3})([0-9]{3})([0-9]{4})/', '\1-\2-\3', $EmployeeRecord['OfficeNumber']);
+		return $EmployeeRecord;
+	}
+
+
+	private function getQuery ($tsql, array $params=null) {
+		$ret = sqlsrv_query( $this->conn, $tsql, $params);
 		if( $ret === false )
 		{
 			throw new DbaException(sqlsrv_errors());
@@ -33,15 +46,30 @@ class Dba {
 		return $ret;
 	}
 
+
+	/**
+	 * Gets the employee record from the EmployeeId
+	 * @parameter $EmployeeId uniqueidentifier The guid of the employee record.
+	 * @return array
+	 */
+	public function GetEmployeeByEmployeeId($EmployeeId)
+	{
+		$stmt = $this->getQuery('SELECT * FROM fn_GetEmployeeByEmployeeId(?)', array($EmployeeId));
+		$ret = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+		return $this->formatPhoneNumbers($ret);
+	}
+
+	
+	/**
+	 * Gets the entire phone list.
+	 * @Returns Array an array of employee records. The employee records are associateive arrays.
+	 */
 	public function GetPhoneList() {
 		$stmt = $this->getQuery('SELECT * FROM fn_GetAllEmployees()');
 		/* Retrieve each row as an associative array and display the results.*/
 		while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))
 		{
-			$row['HomeNumber'] = preg_replace('/([0-9]{3})([0-9]{3})([0-9]{4})/', '\1-\2-\3', $row['HomeNumber']);
-			$row['MobileNumber'] = preg_replace('/([0-9]{3})([0-9]{3})([0-9]{4})/', '\1-\2-\3', $row['MobileNumber']);
-			$row['OfficeNumber'] = preg_replace('/([0-9]{3})([0-9]{3})([0-9]{4})/', '\1-\2-\3', $row['OfficeNumber']);
-			$ret[] = $row;
+			$ret[] = $this->formatPhoneNumbers($row);
 		}
 		return $ret;
 	}

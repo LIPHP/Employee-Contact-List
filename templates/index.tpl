@@ -9,6 +9,7 @@
 <h1>Employee Phone Book App</h1>
 <table id='PhoneListTable'>
 	<tr>
+		<th></th>
 		<th>LastName</th>
 		<th>FirstName</th>
 		<th>Address1</th>
@@ -23,6 +24,7 @@
 {foreach from=$phoneList item=phoneRecord}
 
 	<tr>
+		<td><a href="vcard.php?EmployeeId={$phoneRecord.EmployeeId}">vCard</a></td>
 		<td>{$phoneRecord.LastName}&nbsp;{$phoneRecord.Suffix}</td>
 		<td>{$phoneRecord.FirstName}</td>
 		<td>{$phoneRecord.Address1}</td>

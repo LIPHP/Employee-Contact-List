@@ -7,6 +7,3 @@ CREATE FUNCTION fn_GetEmployeeByEmployeeId (@EmployeeId AS uniqueidentifier) RET
 GO
 
 GRANT SELECT ON fn_GetEmployeeByEmployeeId TO PhoneBookAppUser
-
-
-

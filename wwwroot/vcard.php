@@ -4,6 +4,8 @@
  * @todo fix redirect when no employeeid is specified
  */
 
+require_once('../lib/Session.php');
+
 if (!isset($_REQUEST['EmployeeId']))
 {
 	$host=$_SERVER['HTTP_HOST'];
@@ -11,17 +13,18 @@ if (!isset($_REQUEST['EmployeeId']))
 	return;
 }
 
-require_once('../lib/Session.php');
-
 $session = new Session();
-$smarty = $session->CreateSmarty();
 $dba = $session->GetDba();
-$phoneList = $dba->GetPhoneList();
+$phoneRecord = $dba->GetEmployeeByEmployeeId($_REQUEST['EmployeeId']);
 
-$smarty->assign('phoneList', $phoneList);
-$smarty->display("index.tpl");
-
+# Set the mimetype and set this to be a "download" not an inbrowser document.
 header( "Content-type: text/x-Vcard" );
-header("Content-Disposition: inline; filename=\"$mimeBaseName.flv\"");
+header("Content-Disposition: attachment; filename=\"" . $phoneRecord["LastName"] . '_' . $phoneRecord["FirstName"] . ".vcf\"");
+header("Pragma: public");
+
+
+$smarty = $session->CreateSmarty();
+$smarty->assign('phoneRecord', $phoneRecord);
+$smarty->display("vcard.tpl");
 
 ?>
