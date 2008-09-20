@@ -20,7 +20,7 @@ GO
 CREATE TABLE tbPhoneNumberTypes (
 	PhoneNumberTypeId SMALLINT NOT NULL IDENTITY(1,1) 
 		CONSTRAINT PK_tbContactTypes PRIMARY KEY CLUSTERED,	--Explicitly named primary key
-	PhoneNumberType NVARCHAR(30)	--UNICODE (UTF-16)
+	PhoneNumberType NVARCHAR(30) NOT NULL	--UNICODE (UTF-16)
 )	--Note the lack of a semi-colon
 GO
 
@@ -67,7 +67,7 @@ CREATE TABLE tbPhoneNumbers (
 		CONSTRAINT FK_tbPhoneNumbers_EmployeeId FOREIGN KEY REFERENCES tbEmployees,
 	PhoneNumberTypeId SMALLINT NOT NULL
 		CONSTRAINT FK_tbPhoneNumbers_PhoneNumberTypeId FOREIGN KEY REFERENCES tbPhoneNumberTypes,
-	PhoneNumber CHAR(10)
+	PhoneNumber CHAR(10) NOT NULL
 )
 GO
 -- Each employee can have only one phone number per type

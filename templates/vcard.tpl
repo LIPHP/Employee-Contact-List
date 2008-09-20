@@ -12,4 +12,3 @@ TEL;TYPE=cell,voice:{$phoneRecord.MobileNumber}
 TEL;TYPE=home,voice:{$phoneRecord.HomeNumber}
 TZ:-0500
 END:VCARD
-

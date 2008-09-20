@@ -8,8 +8,8 @@ require_once('../lib/Session.php');
 
 if (!isset($_REQUEST['EmployeeId']))
 {
-	$host=$_SERVER['HTTP_HOST'];
-	header("Location: http://$host/EmployeePhoneBook/");
+	$host=$_SERVER['HTTP_REFERER'];
+	header("Location: $host");
 	return;
 }
 
