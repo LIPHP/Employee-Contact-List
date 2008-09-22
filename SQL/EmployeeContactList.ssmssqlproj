@@ -49,6 +49,18 @@
           <AssociatedConnUserName />
           <FullPath>fn_GetEmployeeByEmployeeId.sql</FullPath>
         </FileNode>
+        <FileNode Name="RAISERROR Severity Examples.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>RAISERROR Severity Examples.sql</FullPath>
+        </FileNode>
+        <FileNode Name="TRY-CATCH Example.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>TRY-CATCH Example.sql</FullPath>
+        </FileNode>
         <FileNode Name="usp_UpdateEmployeeNumber.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>(local)</AssociatedConnSrvName>

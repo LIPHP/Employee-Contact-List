@@ -1,3 +1,4 @@
+-- This is just a script to show how TRY/CATCH works.
 BEGIN TRY
 	-- DO STUFF
 	RAISERROR('Problem found between user and chair.', 16, 1) -- Note this message is initially repressed
