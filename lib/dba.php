@@ -16,17 +16,13 @@ class Dba {
 
 
 	public function __construct () {
-		$this->conn = sqlsrv_connect
-			($this->serverName, $this->connectionInfo);
-		if( $this->conn === false )
-		{
-			throw new DbaException(sqlsrv_errors());
-		}
+		$this->Connect();
 	}
 
 
 	/**
 	 * Takes a 10 character string of numeric characters and formats it as a phone number.
+	 * @param &$EmployeeRecord Array An employee record as a associative array.
 	 */
 	private function formatPhoneNumbers(Array &$EmployeeRecord)
 	{
@@ -47,6 +43,24 @@ class Dba {
 	}
 
 
+	private function Connect()
+	{
+		$this->conn = sqlsrv_connect
+			($this->serverName, $this->connectionInfo);
+		if( $this->conn === false )
+		{
+			throw new DbaException(sqlsrv_errors());
+		}
+	}
+
+
+	public function Disconnect()
+	{
+		sqlsrv_close($this->conn);
+	}
+
+
+
 	/**
 	 * Gets the employee record from the EmployeeId
 	 * @parameter $EmployeeId uniqueidentifier The guid of the employee record.
@@ -56,6 +70,7 @@ class Dba {
 	{
 		$stmt = $this->getQuery('SELECT * FROM fn_GetEmployeeByEmployeeId(?)', array($EmployeeId));
 		$ret = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+		sqlsrv_free_stmt( $stmt);
 		return $this->formatPhoneNumbers($ret);
 	}
 
@@ -71,6 +86,7 @@ class Dba {
 		{
 			$ret[] = $this->formatPhoneNumbers($row);
 		}
+		sqlsrv_free_stmt( $stmt);
 		return $ret;
 	}
 }

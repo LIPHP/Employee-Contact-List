@@ -16,6 +16,7 @@ if (!isset($_REQUEST['EmployeeId']))
 $session = new Session();
 $dba = $session->GetDba();
 $phoneRecord = $dba->GetEmployeeByEmployeeId($_REQUEST['EmployeeId']);
+$dba->Disconnect();
 
 # Set the mimetype and set this to be a "download" not an inbrowser document.
 header( "Content-type: text/x-Vcard" );
