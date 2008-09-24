@@ -8,6 +8,7 @@ BEGIN
 	SET @i = @i + 1
 END
 
+-- DECLARE @i int
 -- RAISERROR() WITH LOG
 SET @i = 0
 WHILE (@i < 25)
@@ -16,6 +17,7 @@ BEGIN
 	SET @i = @i + 1
 END
 
+-- DECLARE @i int
 -- IN A TRY/CATCH
 SET @i = 0
 BEGIN TRY
