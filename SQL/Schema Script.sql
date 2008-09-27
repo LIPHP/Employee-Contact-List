@@ -70,9 +70,9 @@ CREATE TABLE tbPhoneNumbers (
 	PhoneNumber CHAR(10) NOT NULL
 )
 GO
+
 -- Each employee can have only one phone number per type
 -- This is a design decision that is neither right or wrong.
-
 CREATE UNIQUE NONCLUSTERED INDEX CIX_tbPhoneNumbers_EmployeeId_PhoneNumberTypeId
 	ON tbPhoneNumbers (EmployeeId, PhoneNumberTypeId)
 GO
