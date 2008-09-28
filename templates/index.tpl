@@ -24,7 +24,10 @@
 {foreach from=$phoneList item=phoneRecord}
 
 	<tr>
-		<td><a href="vcard.php?EmployeeId={$phoneRecord.EmployeeId}">vCard</a></td>
+		<td>
+			<a href="?EmployeeId={$phoneRecord.EmployeeId}">Details</a>&nbsp;
+			<a href="vcard.php?EmployeeId={$phoneRecord.EmployeeId}">vCard</a>
+		</td>
 		<td>{$phoneRecord.LastName}&nbsp;{$phoneRecord.Suffix}</td>
 		<td>{$phoneRecord.FirstName}</td>
 		<td>{$phoneRecord.Address1}</td>

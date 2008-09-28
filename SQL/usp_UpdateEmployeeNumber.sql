@@ -26,17 +26,24 @@ BEGIN
 		BEGIN
 			RAISERROR ('PhoneNumberType {%s} is invalid.', 16, 1, @PhoneNumberType)
 		END
+
+		UPDATE tbPhoneNumbers
+			SET PhoneNumber=@Number
+			WHERE PhoneNumberTypeId=@PhoneNumberTypeId AND EmployeeId=@EmployeeId
 		
-		-- Lets just do it.
-		INSERT INTO tbPhoneNumbers (EmployeeId, PhoneNumberTypeId, PhoneNumber)
-			VALUES (@EmployeeId, @PhoneNumberTypeId, @Number)
+		IF @@ROWCOUNT = 0
+		BEGIN
+			-- We add it
+			INSERT INTO tbPhoneNumbers (EmployeeId, PhoneNumberTypeId, PhoneNumber)
+				VALUES (@EmployeeId, @PhoneNumberTypeId, @Number)
+		END
 	END TRY
 	BEGIN CATCH
 		DECLARE @ErrorMessage NVARCHAR(4000);
 		DECLARE @ErrorSeverity INT;
 		DECLARE @ErrorState INT;
 
-		SELECT 
+		SELECT
 			@ErrorMessage = ERROR_MESSAGE(),
 			@ErrorSeverity = ERROR_SEVERITY(),
 			@ErrorState = ERROR_STATE();

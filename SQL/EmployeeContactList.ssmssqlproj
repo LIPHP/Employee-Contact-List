@@ -61,17 +61,23 @@
           <AssociatedConnUserName />
           <FullPath>TRY-CATCH Example.sql</FullPath>
         </FileNode>
+        <FileNode Name="usp_AddNewEmployee.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_AddNewEmployee.sql</FullPath>
+        </FileNode>
         <FileNode Name="usp_UpdateEmployeeNumber.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>usp_UpdateEmployeeNumber.sql</FullPath>
         </FileNode>
-        <FileNode Name="usp_AddNewEmployee.sql">
+        <FileNode Name="usp_UpdateEmployee.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>usp_AddNewEmployee.sql</FullPath>
+          <FullPath>usp_UpdateEmployee.sql</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>

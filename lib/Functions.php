@@ -39,7 +39,7 @@ function init_smarty($template_dir = 'templates/', $smarty_debugging=false) {
 	$smarty->compile_dir = $site_root . 'templates_c/';
 	$smarty->config_dir = $site_root . 'configs/';
 	$smarty->cache_dir = $site_root . 'cache/';
-	$smarty->plugins_dir[] = $site_root . 'plugins/';
+	$smarty->plugins_dir[] = $site_root . 'smarty_plugins/';
 	$smarty->security = true;
 	$smarty->debugging = $smarty_debugging;
 	return $smarty;
