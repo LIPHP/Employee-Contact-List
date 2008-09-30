@@ -70,7 +70,7 @@ class Dba {
 	{
 		$stmt = $this->getQuery('SELECT * FROM fn_GetEmployeeByEmployeeId(?)', array($EmployeeId));
 		$ret = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-		sqlsrv_free_stmt( $stmt);
+		sqlsrv_free_stmt($stmt);
 		return $this->formatPhoneNumbers($ret);
 	}
 
@@ -86,8 +86,28 @@ class Dba {
 		{
 			$ret[] = $this->formatPhoneNumbers($row);
 		}
-		sqlsrv_free_stmt( $stmt);
+		sqlsrv_free_stmt($stmt);
 		return $ret;
+	}
+
+
+	/**
+	 * Updates an employees Information
+	 * @todo Document all the parameters.
+	 */
+	public function UpdateEmployeeInfo
+		($EmployeeId, $LastName, $FirstName, $Suffix, 
+		 $Address1, $Address2, $City, $State, $Zip,
+		 $OfficeNumber, $HomeNumber, $MobileNumber)
+	{
+		$SQL =
+			"EXECUTE usp_UpdateEmployee " .
+			"@EmployeeId=?, @LastName=?, @FirstName=?, @Suffix=?, " .
+			"@Address1=?, @Address2=?, @City=?, @State=?, @Zip=?, " .
+			"@OfficeNumber=?, @HomeNumber=?, @MobileNumber=?";
+		$stmt = $this->getQuery($SQL);
+		sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+		sqlsrv_free_stmt($stmt);
 	}
 }
 

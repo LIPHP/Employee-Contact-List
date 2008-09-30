@@ -39,7 +39,7 @@
     action=$action
     heading="Address 1"
     name="address1"
-    value=$phonerecord.Address1
+    value=$phoneRecord.Address1
   }
   {ShowField
     action=$action

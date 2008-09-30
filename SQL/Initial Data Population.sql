@@ -19,6 +19,34 @@ EXEC usp_AddNewEmployee
 	@OfficeNumber = '6316897200'
 GO
 
+-- Lewis, its all info from http://www.2rosenthals.com/
+EXEC usp_AddNewEmployee 
+	@LastName = 'Rosenthal',
+	@FirstName = 'Lewis',
+	@Address1 = '203 Loudoun Street SW',
+	@City = 'Leesburg',
+	@State= 'NY',
+	@Zip = '20175',
+	@OfficeNumber = '7037790477'
+GO
+
+-- We're going to update some info
+/*
+--DECLARE @EmployeeId UniqueIdentifier
+SELECT @EmployeeId=EmployeeId FROM tbEmployees
+	WHERE LastName='RosenThal' AND FirstName='Lewis' AND Suffix IS NULL
+
+EXEC usp_UpdateEmployee 
+	@EmployeeId = @EmployeeId,
+	@LastName = 'Ryan',
+	@FirstName = 'Tom',
+	@Address1 = 'Fake Address',
+	@City = 'Commack',
+	@State= 'NY',
+	@Zip = '20175',
+	@OfficeNumber = '7037790477'
+GO
+*/
 
 DECLARE @EmployeeId uniqueidentifier
 SELECT @EmployeeId=EmployeeId FROM tbEmployees WHERE LastName = 'Dearing' AND FirstName = 'Justin'

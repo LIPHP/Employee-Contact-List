@@ -19,9 +19,7 @@ CREATE PROCEDURE usp_UpdateEmployee (
 BEGIN
 	BEGIN TRANSACTION
 	BEGIN TRY
-		DECLARE @HomeId smallint
-		DECLARE @MobileId smallint
-		DECLARE @OfficeId smallint
+
 
 		IF @EmployeeId IS NULL
 		BEGIN
@@ -30,10 +28,6 @@ BEGIN
 
 		DECLARE @EmployeeIdText char(36)
 		SET @EmployeeIdText = CAST(@EmployeeId AS char(36))
-
-		SELECT @HomeId=PhoneNumberTypeId FROM tbPhoneNumberTypes WHERE PhoneNumberType='Home'
-		SELECT @MobileId=PhoneNumberTypeId FROM tbPhoneNumberTypes WHERE PhoneNumberType='Mobile'
-		SELECT @OfficeId=PhoneNumberTypeId FROM tbPhoneNumberTypes WHERE PhoneNumberType='Office'
 
 		UPDATE tbEmployees
 			SET
@@ -55,20 +49,20 @@ BEGIN
 		-- Insert phone numbers
 		IF @OfficeNumber IS NOT NULL
 		BEGIN
-			INSERT INTO tbPhoneNumbers (EmployeeId, PhoneNumberTypeId, PhoneNumber)
-				VALUES (@EmployeeId, @OfficeId, @OfficeNumber)
+			EXEC usp_UpdateEmployeeNumber 
+				@EmployeeId, 'Office', @OfficeNumber
 		END
 
 		IF @HomeNumber IS NOT NULL
 		BEGIN
-			INSERT INTO tbPhoneNumbers (EmployeeId, PhoneNumberTypeId, PhoneNumber)
-				VALUES (@EmployeeId, @HomeId, @HomeNumber)
+			EXEC usp_UpdateEmployeeNumber 
+				@EmployeeId, 'Home', @HomeNumber
 		END
 
 		IF @MobileNumber IS NOT NULL
 		BEGIN
-			INSERT INTO tbPhoneNumbers (EmployeeId, PhoneNumberTypeId, PhoneNumber)
-				VALUES (@EmployeeId, @MobileId, @MobileNumber)
+			EXEC usp_UpdateEmployeeNumber 
+				@EmployeeId, 'Mobile', @MobileNumber
 		END
 
 		COMMIT TRANSACTION
